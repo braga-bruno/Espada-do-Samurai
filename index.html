@@ -12,6 +12,8 @@
             font-family: 'Crimson Pro', serif;
             background-color: #f4ece1;
             background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+            margin: 0;
+            min-height: 100vh;
         }
         .brush-font {
             font-family: 'Noto Serif JP', serif;
@@ -27,12 +29,15 @@
   "imports": {
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3"
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
+    <!-- Chamada explícita do script principal como módulo -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

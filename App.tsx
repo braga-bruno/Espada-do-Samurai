@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { StatBox } from './components/StatBox';
-import { DiceRoller } from './components/DiceRoller';
-import { AdventureData, Monster } from './types';
+import { StatBox } from './components/StatBox.tsx';
+import { DiceRoller } from './components/DiceRoller.tsx';
+import { AdventureData, Monster } from './types.ts';
 
 const INITIAL_DATA: AdventureData = {
   stats: {
@@ -28,13 +28,21 @@ const INITIAL_MONSTERS: Monster[] = Array.from({ length: 12 }, (_, i) => ({
 
 const App: React.FC = () => {
   const [data, setData] = useState<AdventureData>(() => {
-    const saved = localStorage.getItem('samurai_adventure_data');
-    return saved ? JSON.parse(saved) : INITIAL_DATA;
+    try {
+      const saved = localStorage.getItem('samurai_adventure_data');
+      return saved ? JSON.parse(saved) : INITIAL_DATA;
+    } catch (e) {
+      return INITIAL_DATA;
+    }
   });
 
   const [monsters, setMonsters] = useState<Monster[]>(() => {
-    const saved = localStorage.getItem('samurai_monsters');
-    return saved ? JSON.parse(saved) : INITIAL_MONSTERS;
+    try {
+      const saved = localStorage.getItem('samurai_monsters');
+      return saved ? JSON.parse(saved) : INITIAL_MONSTERS;
+    } catch (e) {
+      return INITIAL_MONSTERS;
+    }
   });
 
   useEffect(() => {
@@ -64,7 +72,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-4 md:p-8 mb-24">
+    <div className="max-w-5xl mx-auto p-4 md:p-8 mb-24 relative z-10">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="brush-font text-5xl md:text-8xl font-bold text-red-800 drop-shadow-md tracking-widest uppercase">
@@ -229,10 +237,10 @@ const App: React.FC = () => {
 
       {/* Aesthetic decorations */}
       <div className="fixed bottom-0 left-0 p-8 opacity-5 pointer-events-none select-none">
-        <div className="text-[20rem] font-black leading-none">武</div>
+        <div className="text-[20rem] font-black leading-none text-black">武</div>
       </div>
       <div className="fixed top-0 right-0 p-8 opacity-5 pointer-events-none select-none">
-        <div className="text-[20rem] font-black leading-none">侍</div>
+        <div className="text-[20rem] font-black leading-none text-black">侍</div>
       </div>
     </div>
   );
