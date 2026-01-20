@@ -1,0 +1,5 @@
+{
+  "name": "Samurai's Sword Adventure Tracker",
+  "description": "Um companheiro digital para o livro-jogo 'A Espada do Samurai', permitindo gerenciar fichas de personagem, encontros com monstros e rolar dados com uma estética temática japonesa.",
+  "requestFramePermissions": []
+}
